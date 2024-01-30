@@ -100,7 +100,7 @@ function AgrFarm() {
             >
               Sprinkler 1 OFF
             </button>
-            <button
+            {/* <button
               className="p-2 rounded-lg bg-blue-200 capitalize"
               onClick={() => Push2(0)}
             >
@@ -111,11 +111,12 @@ function AgrFarm() {
               onClick={() => Push2(1)}
             >
               Sprinkler 2 OFF
-            </button>
+            </button> */}
           </div>
           <div className="flex flex-col gap-1 mt-10">
             <h2>Sprinkler1 {data.sprinkler1 == "0" ? "ON" : "OFF"}</h2>
-            <h2>Sprinkler2 {data.sprinkler2 == "0" ? "ON" : "OFF"}</h2>
+            <h2>Nyala {data.sprinkler1 == "0" ? "ON" : "OFF"} Kali</h2>
+            {/* <h2>Sprinkler2 {data.sprinkler2 == "0" ? "ON" : "OFF"}</h2> */}
           </div>
         </div>
       </div>
