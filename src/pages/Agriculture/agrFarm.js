@@ -61,30 +61,10 @@ function AgrFarm() {
       <h1 className="p-2 rounded-none w-full bg-slate-400 capitalize">{`${location.state.device} Detail`}</h1>
       <div className="p-10 rounded-lg bg-slate-200 capitalize overflow-x-auto max-w-full">
         <div style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
-          {/* <h4>Ph : {data.ph}</h4>
-            <h4>Turbidity : {data.turbidity}</h4>
-            <h4>Water Temp : {data.water_temp}</h4> */}
-          <Speedometer
-            id="dial5"
-            value={data.air_humidity}
-            title="Air Humidity"
-          />
-          <Speedometer
-            id="dial5"
-            value={data.air_temp}
-            title="Air Temperature"
-          />
-          {/* <Speedometer id="dial5" value={data.light} title="Light Intensity" /> */}
-          <Speedometer
-            id="dial5"
-            value={data.soil_humidity}
-            title="Soil Humidity"
-          />
-          <Speedometer
-            id="dial5"
-            value={data.soil_temp}
-            title="Soil Temperature"
-          />
+          <Speedometer value={data.air_humidity} title="Air Humidity" />
+          <Speedometer value={data.air_temp} title="Air Temperature" />
+          <Speedometer value={data.soil_humidity} title="Soil Humidity" />
+          <Speedometer value={data.soil_temp} title="Soil Temperature" />
         </div>
         <div className="flex flex-row justify-between">
           <div className="flex gap-1 mt-10">

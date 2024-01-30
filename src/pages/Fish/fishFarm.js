@@ -42,16 +42,9 @@ function FishFarm() {
       <h1 className="p-2 rounded-none w-full bg-slate-400 capitalize">{`${location.state.device} Detail`}</h1>
       <div className="p-10 rounded-lg bg-slate-200 capitalize">
         <div style={{ display: "flex", flexDirection: "row", gap: "40px" }}>
-          {/* <h4>Ph : {data.ph}</h4>
-            <h4>Turbidity : {data.turbidity}</h4>
-            <h4>Water Temp : {data.water_temp}</h4> */}
-          <Speedometer id="dial5" value={data.ph} title="pH" />
-          <Speedometer id="dial5" value={data.turbidity} title="Turbidity" />
-          <Speedometer
-            id="dial5"
-            value={data.water_temp}
-            title="Water Temperature"
-          />
+          <Speedometer value={data.ph} title="pH" />
+          <Speedometer value={data.turbidity} title="Turbidity" />
+          <Speedometer value={data.water_temp} title="Water Temperature" />
         </div>
       </div>
       <button

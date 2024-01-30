@@ -1,38 +1,29 @@
-import React from "react";
-import ReactSpeedometer from "react-d3-speedometer";
-
-const styles = {
-  dial: {
-    display: "inline-block",
-    width: `300px`,
-    height: `auto`,
-    color: "#000",
-    border: "0px solid #fff",
-    padding: "10px",
-  },
-  title: {
-    fontSize: "1em",
-    color: "#000",
-  },
-};
+import React, { useEffect, useState } from "react";
+import GaugeChart from "react-gauge-chart";
 
 const Speedometer = ({ id, value, title }) => {
+  const [percentValue, setPercentValue] = useState(value);
+
+  useEffect(() => {
+    // Update the percent value only when the 'value' prop changes
+    setPercentValue(value);
+  }, [value]);
+
   return (
-    <div style={styles.dial}>
-      <ReactSpeedometer
-        maxValue={100}
-        minValue={0}
-        height={190}
-        width={290}
-        value={value}
-        needleTransition="easeQuadIn"
-        needleTransitionDuration={1000}
-        needleColor="red"
-        startColor="green"
-        segments={10}
-        endColor="blue"
+    <div>
+      <h2>{title}</h2>
+      <GaugeChart
+        colors={["red", "yellow", "green"]}
+        nrOfLevels={3}
+        formatTextValue={() => {
+          return title === "Air Temperature"
+            ? percentValue + "°C"
+            : percentValue + "%";
+        }}
+        textColor={"black"}
+        percent={percentValue / 100}
+        animate={false}
       />
-      <div style={styles.title}>{title}</div>
     </div>
   );
 };
