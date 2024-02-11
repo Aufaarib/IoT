@@ -5,10 +5,12 @@ import Speedometer from "../../speedometer";
 
 function AgrFarm() {
   const [data, setData] = useState([]);
+  const [lowest, setLowest] = useState(0);
   const navigate = useNavigate();
   const location = useLocation();
 
   console.log(location.state.device);
+  console.log(lowest);
 
   // Push Function
   const Push = (value) => {
@@ -22,7 +24,7 @@ function AgrFarm() {
   const Push2 = (value) => {
     db.ref(`${localStorage.getItem("USER")}/agri_farm/${location.state.device}`)
       .update({
-        sprinkler2: value,
+        soil_humidity_lowest: value,
       })
       .catch(alert);
   };
@@ -31,11 +33,20 @@ function AgrFarm() {
     const dataRef2 = db.ref(
       `${localStorage.getItem("USER")}/agri_farm/${location.state.device}`
     ); // Replace with your Firebase data path
-
     dataRef2.on("value", (snapshot) => {
       const data = snapshot.val();
       if (data) {
         setData(data);
+        setLowest(data.soil_humidity_lowest);
+      }
+      if (data.soil_humidity < data.soil_humidity_lowest) {
+        db.ref(
+          `${localStorage.getItem("USER")}/agri_farm/${location.state.device}`
+        )
+          .update({
+            soil_humidity_lowest: data.soil_humidity,
+          })
+          .catch(alert);
       }
     });
 
@@ -80,13 +91,13 @@ function AgrFarm() {
             >
               Sprinkler 1 OFF
             </button>
-            {/* <button
-              className="p-2 rounded-lg bg-blue-200 capitalize"
-              onClick={() => Push2(0)}
-            >
-              Sprinkler 2 ON
-            </button>
             <button
+              className="p-2 rounded-lg bg-blue-200 capitalize"
+              onClick={() => Push2(100)}
+            >
+              Reset Lowest
+            </button>
+            {/* <button
               className="p-2 rounded-lg bg-blue-200 capitalize"
               onClick={() => Push2(1)}
             >
@@ -95,7 +106,8 @@ function AgrFarm() {
           </div>
           <div className="flex flex-col gap-1 mt-10">
             <h2>Sprinkler1 {data.sprinkler1 == "0" ? "ON" : "OFF"}</h2>
-            <h2>Nyala {data.sprinkler1 == "0" ? "ON" : "OFF"} Kali</h2>
+            {/* <h2>Nyala {data.sprinkler1 == "0" ? "ON" : "OFF"} Kali</h2> */}
+            <h2>Lowest SH {lowest}</h2>
             {/* <h2>Sprinkler2 {data.sprinkler2 == "0" ? "ON" : "OFF"}</h2> */}
           </div>
         </div>
