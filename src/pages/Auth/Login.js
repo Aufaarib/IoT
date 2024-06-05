@@ -19,7 +19,7 @@ function Login() {
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-3 bg-green-300 p-5 rounded-md">
         <label className="font-bold mb-2 text-lg bg-slate-200 p-2 rounded-md">
-          IoT Based Monitoring System
+          IoT Based Monitoring Dashboard
         </label>
         <label className="font-bold mb-5">Please Login</label>
         <label className="flex justify-start">Username</label>
@@ -27,11 +27,11 @@ function Login() {
           className="bg-white outline-none p-2 rounded-md"
           onChange={(e) => setUsername(e.target.value)}
         />
-        <label className="flex justify-start">Password</label>
+        {/* <label className="flex justify-start">Password</label>
         <input
           className="bg-white0 outline-none p-2 rounded-md"
           onChange={(e) => setPassword(e.target.value)}
-        />
+        /> */}
       </div>
       <button className="bg-slate-200 p-1 rounded-lg" onClick={() => onLogin()}>
         Login

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import GaugeChart from "react-gauge-chart";
 
-const Speedometer = ({ id, value, title }) => {
+const Speedometer = ({ id, value, title, color }) => {
   const [percentValue, setPercentValue] = useState(value);
 
   useEffect(() => {
@@ -13,10 +13,10 @@ const Speedometer = ({ id, value, title }) => {
     <div>
       <h2>{title}</h2>
       <GaugeChart
-        colors={["red", "yellow", "green"]}
+        colors={color}
         nrOfLevels={3}
         formatTextValue={() => {
-          return title === "Air Temperature"
+          return title === "Air Temperature" || title === "Soil Temperature"
             ? percentValue + "°C"
             : percentValue + "%";
         }}

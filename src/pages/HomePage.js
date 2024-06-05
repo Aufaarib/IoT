@@ -6,50 +6,52 @@ import imgKlm from "../img/klm.jpg";
 
 function HomePage() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const arr = [];
 
   useEffect(() => {
-    const dataRef2 = db.ref(`${localStorage.getItem("USER")}`); // Replace with your Firebase data path
+    const dataRef2 = db.ref(`${localStorage.getItem("USER")}`);
     dataRef2.on("value", (snapshot) => {
       const data = snapshot.val();
       if (data) {
+        setLoading(false);
         setData(data);
         arr.push(data);
       }
     });
-    // Cleanup the listener when the component unmounts
     return () => {
       dataRef2.off();
     };
   }, []);
 
-  const arr = [];
   const arrayResult = Object.keys(data).map((room) => {
     return { name: room };
   });
 
-  console.log(arrayResult);
+  const filter = arrayResult.filter((items) => items.name === "agri_farm");
 
   const toAgrFarm = () => {
     navigate("/agri-farm/devices");
     localStorage.setItem("SECTOR", "Agriculture");
   };
 
-  const toFishFarm = () => {
-    navigate("/fish-farm/devices");
-    localStorage.setItem("SECTOR", "Fish Farm");
-  };
+  // const toFishFarm = () => {
+  //   navigate("/fish-farm/devices");
+  //   localStorage.setItem("SECTOR", "Fish Farm");
+  // };
 
   return (
     <div className="flex flex-row gap-5">
-      {arrayResult.length !== 0 ? (
-        arrayResult.map((data) => (
+      {!loading ? (
+        filter.map((data) => (
           <button
             className="p-2 rounded-lg bg-slate-200 capitalize"
             onClick={
-              data.name === "agri_farm"
-                ? () => toAgrFarm(data.name)
-                : () => toFishFarm(data.name)
+              // data.name === "agri_farm"
+              //   ?
+              () => toAgrFarm(data.name)
+              // : () => toFishFarm(data.name)
             }
           >
             {data.name}

@@ -67,17 +67,34 @@ function AgrFarm() {
         flexDirection: "column",
         alignItems: "center",
         rowGap: "50px",
+        width: "100%",
       }}
     >
-      <h1 className="p-2 rounded-none w-full bg-slate-400 capitalize">{`${location.state.device} Detail`}</h1>
-      <div className="p-10 rounded-lg bg-slate-200 capitalize overflow-x-auto max-w-full">
-        <div style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
-          <Speedometer value={data.air_humidity} title="Air Humidity" />
-          <Speedometer value={data.air_temp} title="Air Temperature" />
-          <Speedometer value={data.soil_humidity} title="Soil Humidity" />
-          <Speedometer value={data.soil_temp} title="Soil Temperature" />
+      <h1 className="p-2 rounded-none w-full capitalize">{`${location.state.device} Detail`}</h1>
+      <div className="p-10 rounded-lg bg-slate-200 capitalize overflow-x-auto w-full">
+        <div className="flex flex-col lg:flex-row justify-evenly gap-[10px] w-full">
+          {/* <Speedometer
+            color={["red", "yellow", "green"]}
+            value={data.air_humidity}
+            title="Air Humidity"
+          /> */}
+          <Speedometer
+            color={["yellow", "green", "red"]}
+            value={data.air_temp}
+            title="Air Temperature"
+          />
+          <Speedometer
+            color={["red", "yellow", "green"]}
+            value={data.soil_humidity}
+            title="Soil Humidity"
+          />
+          <Speedometer
+            color={["red", "yellow", "green"]}
+            value={data.soil_temp}
+            title="Soil Temperature"
+          />
         </div>
-        <div className="flex flex-row justify-between">
+        {/* <div className="flex flex-row justify-between">
           <div className="flex gap-1 mt-10">
             <button
               className="p-2 rounded-lg bg-blue-200 capitalize"
@@ -103,14 +120,14 @@ function AgrFarm() {
             >
               Sprinkler 2 OFF
             </button> */}
-          </div>
+        {/* </div>
           <div className="flex flex-col gap-1 mt-10">
             <h2>Sprinkler1 {data.sprinkler1 == "0" ? "ON" : "OFF"}</h2>
             {/* <h2>Nyala {data.sprinkler1 == "0" ? "ON" : "OFF"} Kali</h2> */}
-            <h2>Lowest SH {lowest}</h2>
+        {/* <h2>Lowest SH {lowest}</h2>
             {/* <h2>Sprinkler2 {data.sprinkler2 == "0" ? "ON" : "OFF"}</h2> */}
-          </div>
-        </div>
+        {/* </div>
+        </div> */}
       </div>
       <button
         className="p-2 rounded-lg bg-slate-200 capitalize"

@@ -24,7 +24,7 @@ const MainLayout = () => {
           </button>
         </div>
       </div>
-      <div className="bg-white w-full h-screen flex items-center justify-center p-16">
+      <div className="bg-white w-full justify-center flex p-12">
         <Outlet />
       </div>
     </div>
